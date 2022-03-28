@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Error: address is required"],
         minlength: [2, "Error: address must be atleast 2 characters"]
     },
+    city: {
+        type: String,
+        required: [true, "Error: city is required"],
+    },
     state: {
         type: String,
         required: [true, "Error: state is required"],

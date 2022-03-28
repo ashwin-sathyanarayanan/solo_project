@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken')
+
 const Item = require("../models/item.model")
 
 
@@ -6,11 +8,16 @@ const healthcheck = (req,res) => {
 };
 
 const getAllItems = (req, res) => {
+    const decodedJwt = jwt.decode(req.cookies.usertoken, {complete:true})
+    const user = decodedJwt.payload
+    // console.log(req.cookies.usertoken)
+    
     Item.find()
         .then((allItems) =>{
             res.json({allItems});
         })
         .catch((err) => {res.status(400).json({ err })});
+    
 }
 
 const addNewItem = (req,res) => {
